@@ -10,7 +10,8 @@ type NavbarProps = {
 const Contact = ({ isDarkMode }: NavbarProps) => {
   const [result, setResult] = React.useState("");
 
-  const onSubmit = async (event) => {
+  //@ts
+  const onSubmit = async (event: any) => {
     event.preventDefault();
     setResult("Sending....");
     const formData = new FormData(event.target);
