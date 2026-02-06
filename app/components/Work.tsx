@@ -2,8 +2,11 @@ import { assets, workData } from "@/assets/assets";
 import Image from "next/image";
 import React from "react";
 import { motion } from "motion/react";
+type NavbarProps = {
+  isDarkMode: boolean;
+};
 
-const Work = ({ isDarkMode }) => {
+const Work = ({ isDarkMode }: NavbarProps) => {
   return (
     <motion.div
       initial={{ opacity: 0 }}

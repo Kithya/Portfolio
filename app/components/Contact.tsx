@@ -3,7 +3,11 @@ import Image from "next/image";
 import React from "react";
 import { motion } from "motion/react";
 
-const Contact = ({ isDarkMode }) => {
+type NavbarProps = {
+  isDarkMode: boolean;
+};
+
+const Contact = ({ isDarkMode }: NavbarProps) => {
   const [result, setResult] = React.useState("");
 
   const onSubmit = async (event) => {

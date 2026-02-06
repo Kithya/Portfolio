@@ -3,9 +3,14 @@ import Image from "next/image";
 import React, { useEffect, useRef, useState } from "react";
 import { assets } from "../../assets/assets";
 
-const Navbar = ({ isDarkMode, setIsDarkMode }) => {
+type NavbarProps = {
+  isDarkMode: boolean;
+  setIsDarkMode: React.Dispatch<React.SetStateAction<boolean>>;
+};
+
+const Navbar = ({ isDarkMode, setIsDarkMode }: NavbarProps) => {
   const [isScroll, setIsScroll] = useState(false);
-  const sideMenuRef = useRef(null);
+  const sideMenuRef = useRef<HTMLUListElement | null>(null);
 
   const openMenu = () => {
     if (!sideMenuRef.current) return;

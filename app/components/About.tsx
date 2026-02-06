@@ -3,7 +3,13 @@ import Image from "next/image";
 import React from "react";
 import { motion } from "motion/react";
 
-const About = ({ isDarkMode, setIsDarkMode }) => {
+type NavbarProps = {
+  isDarkMode: boolean;
+  setIsDarkMode: React.Dispatch<React.SetStateAction<boolean>>;
+};
+
+
+const About = ({ isDarkMode, setIsDarkMode }: NavbarProps) => {
   return (
     <motion.div
       initial={{ opacity: 0 }}
