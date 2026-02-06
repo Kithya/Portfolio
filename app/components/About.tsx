@@ -5,11 +5,9 @@ import { motion } from "motion/react";
 
 type NavbarProps = {
   isDarkMode: boolean;
-  setIsDarkMode: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-
-const About = ({ isDarkMode, setIsDarkMode }: NavbarProps) => {
+const About = ({ isDarkMode }: NavbarProps) => {
   return (
     <motion.div
       initial={{ opacity: 0 }}
