@@ -7,7 +7,6 @@ import Work from "./components/Work";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 import { useEffect, useState } from "react";
-import { the } from "../.next/dev/types/validator";
 
 export default function Home() {
   const [isDarkMode, setIsDarkMode] = useState(false);
