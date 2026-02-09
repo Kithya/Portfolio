@@ -159,13 +159,18 @@ const About = ({ isDarkMode }: AboutProps) => {
             <div className="mt-4 flex flex-wrap items-center gap-3">
               {toolsData.map((tool, i) => (
                 <motion.div
-                  key={i}
-                  variants={floatVariant}
-                  custom={i}
-                  animate="animate"
+                  key={i} // better than index
+                  animate={{ y: [0, -6, 0] }}
+                  transition={{
+                    duration: 2.8,
+                    repeat: Infinity,
+                    repeatType: "mirror",
+                    ease: [0.42, 0, 0.58, 1], // easeInOut as cubic-bezier
+                    delay: i * 0.12,
+                  }}
                   whileHover={{ scale: 1.06 }}
                   className="rounded-xl border border-gray-300 bg-white/60 p-3 shadow-sm
-                  dark:border-white/20 dark:bg-white/5"
+                            dark:border-white/20 dark:bg-white/5"
                   aria-label="Tool"
                 >
                   <Image src={tool} alt="tool" width={26} height={26} />
