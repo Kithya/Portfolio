@@ -6,7 +6,19 @@ type NavbarProps = {
   isDarkMode: boolean;
 };
 
+const isValidLink = (value: string) =>
+  !!value && value.trim() !== "" && value.trim().toLocaleLowerCase() !== "none";
+
 const Work = ({ isDarkMode }: NavbarProps) => {
+  const INITIAL_COUNT = 4;
+  const [expended, setExpanded] = React.useState(false);
+
+  const visibleProjects = expended
+    ? workData
+    : workData.slice(0, INITIAL_COUNT);
+
+  const canToggle = workData.length > INITIAL_COUNT;
+
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -29,7 +41,7 @@ const Work = ({ isDarkMode }: NavbarProps) => {
         transition={{ duration: 0.5, delay: 0.5 }}
         className="text-center text-5xl font-ovo"
       >
-        My Lastest Projects
+        My Latest Projects
       </motion.h2>
 
       <motion.p
@@ -38,8 +50,8 @@ const Work = ({ isDarkMode }: NavbarProps) => {
         transition={{ duration: 0.5, delay: 0.7 }}
         className="text-center max-w-2xl mx-auto mt-5 mb-12 font-ovo text-sm text-gray-500 dark:text-white/80"
       >
-        Welcome to my web development portfolio! Explore a collection of
-        projects showcasing my expertise in front-end development.
+        Here are a few projects I’ve worked on. Hover a card to view the code or
+        live demo.
       </motion.p>
 
       <motion.div
@@ -48,41 +60,117 @@ const Work = ({ isDarkMode }: NavbarProps) => {
         transition={{ duration: 0.5, delay: 0.7 }}
         className="grid grid-template gap-6 my-10 dark:text-black"
       >
-        {workData.map((project, index) => (
-          <motion.div
-            whileHover={{ scale: 1.05 }}
-            transition={{ duration: 0.3 }}
-            key={index}
-            style={{ backgroundImage: `url(${project.bgImage})` }}
-            className="aspect-square bg-no-repeat bg-cover bg-center rounded-lg relative cursor-pointer group"
-          >
-            <div className="bg-white w-10/12 rounded-md absolute bottom-5 left-1/2 -translate-x-1/2 py-3 px-5 flex items-center justify-between duration-500 group-hover:bottom-7">
-              <div>
-                <h2 className="font-semibold">{project.title}</h2>
-                <p className="text-sm text-gray-700">{project.description}</p>
+        {visibleProjects.map((project, index) => {
+          const showGithub = isValidLink(project.github);
+          const showLive = isValidLink(project.live);
+
+          return (
+            <motion.article
+              key={project.id}
+              whileHover={{ scale: 1.03 }}
+              transition={{ duration: 0.2 }}
+              className="group relative overflow-hidden rounded-xl border border-gray-200 dark:border-white/20 bg-white/60 dark:bg-white/5"
+            >
+              {/* Image */}
+              <div className="relative aspect-[4/3] w-full">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={project.image}
+                  alt={project.title}
+                  className="h-full w-full object-cover"
+                />
               </div>
-              <div className="border rounded-full border-black w-9 aspect-square flex items-center justify-center shadow-[2px_2px_0_#000] group-hover:bg-lime-300 transition duration-500">
-                <Image src={assets.send_icon} alt="send" className="w-5" />
+
+              {/* Content */}
+              <div className="p-5">
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
+                  {project.title}
+                </h3>
+
+                <p className="mt-2 text-sm text-gray-500 dark:text-white/80">
+                  {project.description}
+                </p>
+
+                {/* Tech stack */}
+                {project.tech?.length ? (
+                  <ul className="mt-4 flex flex-wrap gap-2">
+                    {project.tech.map((tech) => (
+                      <li
+                        key={`${project.id}-${tech}`}
+                        className="text-xs px-2.5 py-1 rounded-full border border-gray-300 text-gray-700 dark:text-white/80 dark:border-white/20"
+                      >
+                        {tech}
+                      </li>
+                    ))}
+                  </ul>
+                ) : null}
               </div>
-            </div>
-          </motion.div>
-        ))}
+
+              {/* Hover overlay */}
+
+              <div className="pointer-events-none absolute inset-0 bg-black/60 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+              <div className="absolute inset-0 flex items-center justify-center opacity-0 translate-y-2 transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0">
+                {showGithub && (
+                  <a
+                    href={project.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="pointer-events-auto inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 text-sm font-medium text-gray-900 hover:scale-[1.03] transition"
+                  >
+                    <span>Github</span>
+                    <Image src={assets.send_icon} alt="" className="w-4" />
+                  </a>
+                )}
+
+                {showLive && (
+                  <a
+                    href={project.live}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="pointer-events-auto inline-flex items-center justify-center gap-2 rounded-full bg-white/10 px-4 py-2 text-sm font-medium text-white border border-white/40 hover:bg-white/20 hover:scale-[1.03] transition"
+                  >
+                    <span>Live</span>
+                    <Image
+                      src={
+                        isDarkMode
+                          ? assets.right_arrow_white
+                          : assets.right_arrow_white
+                      }
+                      alt=""
+                      className="w-4"
+                    />
+                  </a>
+                )}
+
+                {!showGithub && !showLive && (
+                  <span className="pointer-events-auto text-white/90 tet-sm px-4 py-2 rounded-full border border-white/30">
+                    Link Coming Soon
+                  </span>
+                )}
+              </div>
+            </motion.article>
+          );
+        })}
       </motion.div>
 
-      <motion.a
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        transition={{ duration: 0.5, delay: 0.7 }}
-        href=""
-        className="flex items-center w-max justify-center gap-2 text-gray-700 border-[0.5px] rounded-full  mx-auto py-3 px-10 my-20 hover:bg-gray-900 hover:text-white duration-500 dark:text-white dark:border-white dark:hover:bg-white/10 dark:hover:text-white"
-      >
-        Show more{" "}
-        <Image
-          src={isDarkMode ? assets.right_arrow_white : assets.right_arrow_bold}
-          alt=""
-          className="w-4"
-        />
-      </motion.a>
+      {canToggle && (
+        <div className="flex justify-center mt-6">
+          <button
+            type="button"
+            onClick={() => setExpanded((p) => !p)}
+            className="flex items-center w-max justify-center gap-2 text-gray-700 border-[0.5px] rounded-full py-3 px-10 hover:bg-gray-900 hover:text-white duration-400 dark:text-white dark:border-white dark:bg-white/70 dark:hover:text-white"
+          >
+            {expended ? "Show Less" : "Show More"}
+            <Image
+              src={
+                isDarkMode ? assets.right_arrow_white : assets.right_arrow_bold
+              }
+              alt=""
+              className={`w-4 transition-transform duration-300 ${expended ? "rotate-90" : ""}`}
+            />
+          </button>
+        </div>
+      )}
     </motion.div>
   );
 };

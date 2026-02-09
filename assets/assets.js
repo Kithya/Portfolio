@@ -84,24 +84,49 @@ export const assets = {
 
 export const workData = [
   {
-    title: "Frontend project",
-    description: "Web Design",
-    bgImage: "/work-1.png",
+    id: "portfolio-v1",
+    title: "Portfolio Website",
+    description: "Personal portfolio with dark mode + animations",
+    tech: ["Next.js", "Tailwind", "Motion"],
+    image: "/work-1.png", // put in /public
+    github: "https://github.com/yourname/portfolio", // change later
+    live: "https://your-portfolio.vercel.app", // change later
   },
   {
-    title: "Geo based app",
-    description: "Mobile App",
-    bgImage: "/work-2.png",
+    id: "resume-builder",
+    title: "Resume Builder",
+    description: "Build and preview resumes with templates",
+    tech: ["React", "Tailwind"],
+    image: "/work-2.png",
+    github: "https://github.com/yourname/resume-builder",
+    live: "none", // or "" to hide Live button
   },
   {
-    title: "Photography site",
-    description: "Web Design",
-    bgImage: "/work-3.png",
+    id: "marketplace",
+    title: "Digital Marketplace",
+    description: "Product listing + filtering UI",
+    tech: ["React", "Node.js", "Express"],
+    image: "/work-3.png",
+    github: "https://github.com/yourname/digital-marketplace",
+    live: "none",
   },
   {
-    title: "UI/UX designing",
-    description: "UI/UX Design",
-    bgImage: "/work-4.png",
+    id: "book-notes",
+    title: "Book Notes Tracker",
+    description: "Log and rate non-fiction books",
+    tech: ["Node.js", "Postgres", "EJS"],
+    image: "/work-4.png",
+    github: "https://github.com/yourname/book-notes",
+    live: "none",
+  },
+  {
+    id: "fitlink",
+    title: "FitLink (Concept)",
+    description: "Gym social app concept + event features",
+    tech: ["Flutter", "Firebase"],
+    image: "/work-4.png",
+    github: "none",
+    live: "none",
   },
 ];
 
@@ -163,4 +188,11 @@ export const toolsData = [
   assets.mongodb,
   assets.figma,
   assets.git,
+];
+
+export const highlights = [
+  { label: "Frontend-focused", value: "React + Next.js" },
+  { label: "Seeking", value: "Intern / Junior" },
+  { label: "Strengths", value: "UI, Components" },
+  { label: "Mindset", value: "Build & Learn" },
 ];
