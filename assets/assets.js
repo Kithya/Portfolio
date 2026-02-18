@@ -124,9 +124,9 @@ export const workData = [
   {
     id: "chatgpt-clone",
     title: "ChatGPT Clone",
-    description: "Weather app built with React + Tailwind",
+    description: "ChatGPT Clone with Gemini API",
     tech: ["React", "Tailwind"],
-    image: "/work-4.png",
+    image: "/chatGPT.png",
     github: "none",
     live: "none",
   },
@@ -154,7 +154,7 @@ export const serviceData = [
       "Creating wireframes and interactive prototypes in Figma to plan user flows and improve usability before development.",
     link: "",
   },
-] ;
+];
 
 export const infoList = [
   {
