@@ -11,12 +11,11 @@ const Contact = ({ isDarkMode }: NavbarProps) => {
   const [result, setResult] = React.useState("");
 
   //@ts
-  const onSubmit = async (event: any) => {
+  const onSubmit = async (event) => {
     event.preventDefault();
     setResult("Sending....");
     const formData = new FormData(event.target);
-
-    formData.append("access_key", "2ededec3-b77e-46ec-abaa-a663ec1315b1");
+    formData.append("access_key", "f1fea556-0a0a-4b65-a49e-1118a2fe9198");
 
     const response = await fetch("https://api.web3forms.com/submit", {
       method: "POST",
@@ -24,13 +23,11 @@ const Contact = ({ isDarkMode }: NavbarProps) => {
     });
 
     const data = await response.json();
-
     if (data.success) {
       setResult("Form Submitted Successfully");
       event.target.reset();
     } else {
-      console.log("Error", data);
-      setResult(data.message);
+      setResult("Error");
     }
   };
 

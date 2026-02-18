@@ -21,7 +21,7 @@ const Footer = ({ isDarkMode }: NavbarProps) => {
             alt=""
             className="w-6"
           />
-          narakithya@gmail.com
+          narakithya.work@gmail.com
         </div>
       </div>
 
@@ -29,7 +29,8 @@ const Footer = ({ isDarkMode }: NavbarProps) => {
         <p className="">
           © {new Date().getFullYear()} Nara Ratanakkithya. All rights reserved.
         </p>
-        <ul className="flex items-center gap-10 mt-4 sm:mt-0 hover:underline">
+        <p className="text-gray-500">Tel: +855 77961048</p>
+        <ul className="flex items-center gap-10 mt-4 sm:mt-0">
           <li>
             <a target="_blank" href="https://github.com/Kithya">
               Github

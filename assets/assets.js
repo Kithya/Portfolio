@@ -38,6 +38,7 @@ import send_icon from "./send-icon.png";
 import right_arrow_bold from "./right-arrow-bold.png";
 import right_arrow_bold_dark from "./right-arrow-bold-dark.png";
 import profile from "./profile.jpg";
+import profile_round from "./profile_round.jpg";
 
 export const assets = {
   user_image,
@@ -80,6 +81,7 @@ export const assets = {
   right_arrow_bold,
   right_arrow_bold_dark,
   profile,
+  profile_round,
 };
 
 export const workData = [
@@ -87,43 +89,43 @@ export const workData = [
     id: "portfolio-v1",
     title: "Portfolio Website",
     description: "Personal portfolio with dark mode + animations",
-    tech: ["Next.js", "Tailwind", "Motion"],
-    image: "/work-1.png", // put in /public
-    github: "https://github.com/yourname/portfolio", // change later
-    live: "https://your-portfolio.vercel.app", // change later
+    tech: ["Next.js", "Tailwind", "Framer Motion"],
+    image: "/portfolio.png", // put in /public
+    github: "https://github.com/Kithya/Portfolio", // change later
+    live: "https://kithya-portfolio.vercel.app/", // change later
   },
   {
     id: "resume-builder",
     title: "Resume Builder",
     description: "Build and preview resumes with templates",
+    tech: ["React", "Tailwind", "MongoDB", "Node.js"],
+    image: "/resume_builder.png",
+    github: "https://github.com/Kithya/AI-Resume",
+    live: "https://ai-resume-wine-five.vercel.app/", // or "" to hide Live button
+  },
+  {
+    id: "ai-email-saas",
+    title: "AI Email SaaS",
+    description: "AI Email SaaS for sending emails",
+    tech: ["NextJs", "Tailwind", "PostgresQL"],
+    image: "/dealflow.png",
+    github: "https://github.com/Kithya/email-project",
+    live: "none",
+  },
+  {
+    id: "resume-analyzer",
+    title: "Resume Analyzer",
+    description: "Analyze resumes with AI and get feedback",
     tech: ["React", "Tailwind"],
-    image: "/work-2.png",
-    github: "https://github.com/yourname/resume-builder",
-    live: "none", // or "" to hide Live button
+    image: "/resume_analyzer.png",
+    github: "https://github.com/Kithya/ai-resume-analyzer",
+    live: "https://ai-resume-analyzer-two-murex.vercel.app/",
   },
   {
-    id: "marketplace",
-    title: "Digital Marketplace",
-    description: "Product listing + filtering UI",
-    tech: ["React", "Node.js", "Express"],
-    image: "/work-3.png",
-    github: "https://github.com/yourname/digital-marketplace",
-    live: "none",
-  },
-  {
-    id: "book-notes",
-    title: "Book Notes Tracker",
-    description: "Log and rate non-fiction books",
-    tech: ["Node.js", "Postgres", "EJS"],
-    image: "/work-4.png",
-    github: "https://github.com/yourname/book-notes",
-    live: "none",
-  },
-  {
-    id: "fitlink",
-    title: "FitLink (Concept)",
-    description: "Gym social app concept + event features",
-    tech: ["Flutter", "Firebase"],
+    id: "chatgpt-clone",
+    title: "ChatGPT Clone",
+    description: "Weather app built with React + Tailwind",
+    tech: ["React", "Tailwind"],
     image: "/work-4.png",
     github: "none",
     live: "none",
@@ -152,14 +154,7 @@ export const serviceData = [
       "Creating wireframes and interactive prototypes in Figma to plan user flows and improve usability before development.",
     link: "",
   },
-  {
-    icon: assets.graphics_icon,
-    title: "API Integration",
-    description:
-      "Connecting frontend applications with REST APIs and handling data from backend services.",
-    link: "",
-  },
-];
+] ;
 
 export const infoList = [
   {
@@ -172,7 +167,7 @@ export const infoList = [
     icon: assets.edu_icon,
     iconDark: assets.edu_icon_dark,
     title: "Education",
-    description: "B.Tech in Computer Science",
+    description: "Limkokwing University of Creative Technology (2021 - 2025)",
   },
   {
     icon: assets.project_icon,
