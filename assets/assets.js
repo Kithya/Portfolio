@@ -113,22 +113,13 @@ export const workData = [
     live: "none",
   },
   {
-    id: "resume-analyzer",
-    title: "Resume Analyzer",
-    description: "Analyze resumes with AI and get feedback",
-    tech: ["React", "Tailwind"],
-    image: "/resume_analyzer.png",
-    github: "https://github.com/Kithya/ai-resume-analyzer",
-    live: "https://ai-resume-analyzer-two-murex.vercel.app/",
-  },
-  {
     id: "chatgpt-clone",
     title: "ChatGPT Clone",
     description: "ChatGPT Clone with Gemini API",
     tech: ["React", "Tailwind"],
     image: "/chatGPT.png",
-    github: "none",
-    live: "none",
+    github: "https://github.com/Kithya/chatgpt_clone",
+    live: "https://chatgpt-clone-alpha-puce.vercel.app",
   },
 ];
 

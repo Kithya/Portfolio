@@ -1,4 +1,4 @@
-import { assets, infoList, toolsData } from "@/assets/assets";
+import { assets } from "@/assets/assets";
 import Image from "next/image";
 import React from "react";
 import { motion } from "motion/react";
@@ -7,26 +7,60 @@ type AboutProps = {
   isDarkMode: boolean;
 };
 
-const floatVariant = {
-  animate: (i: number) => ({
-    y: [0, -6, 0],
-    transition: {
-      duration: 2.8,
-      repeat: Infinity,
-      ease: "easeInOut",
-      delay: i * 0.12,
-    },
-  }),
-};
+const skillGroups = [
+  {
+    title: "Languages",
+    items: ["Java", "C++", "JavaScript"],
+  },
+  {
+    title: "Frontend",
+    items: ["React", "HTML", "CSS", "Tailwind CSS"],
+  },
+  {
+    title: "Backend",
+    items: ["Node.js", "Express"],
+  },
+  {
+    title: "Database",
+    items: ["PostgreSQL", "MySQL"],
+  },
+  {
+    title: "Tools",
+    items: ["Git", "GitHub", "Postman", "VS Code"],
+  },
+  {
+    title: "Design",
+    items: ["Figma"],
+  },
+];
 
-const About = ({ isDarkMode }: AboutProps) => {
+const stats = [
+  { label: "Projects", value: "5+" },
+  { label: "Years Learning", value: "1+" },
+  { label: "Focus", value: "Web Dev" },
+];
+
+const education = [
+  {
+    degree: "Bachelor of Software Engineering",
+    school: "Limkokwing University of Creative Technology",
+    period: "2022 - 2025",
+    detail:
+      "Focused on software engineering fundamentals, web development, databases, and project-based learning.",
+  },
+];
+
+const About = ({ isDarkMode: _isDarkMode }: AboutProps) => {
   return (
-    <section id="about" className="w-full px-[12%] py-14 scroll-mt-20">
-      {/* Header */}
+    <section
+      id="about"
+      className="w-full px-[8%] lg:px-[10%] py-14 scroll-mt-20"
+    >
+      {/* Header (same style as your previous design) */}
       <motion.div
-        initial={{ opacity: 0, y: 10 }}
+        initial={{ opacity: 0, y: 12 }}
         whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
+        transition={{ duration: 0.55 }}
         viewport={{ once: true, amount: 0.35 }}
         className="text-center"
       >
@@ -36,149 +70,186 @@ const About = ({ isDarkMode }: AboutProps) => {
         <h2 className="text-5xl font-ovo text-gray-900 dark:text-white">
           About Me
         </h2>
-        <p className="mt-4 max-w-2xl mx-auto font-ovo text-sm text-gray-500 dark:text-white/80">
-          I’m a frontend-focused developer who enjoys building clean, modern
-          interfaces and shipping real projects while learning best practices.
+        <p className="mt-4 max-w-2xl mx-auto text-sm sm:text-base text-gray-600 dark:text-white/70 leading-7">
+          Frontend-focused developer who enjoys building clean, responsive web
+          interfaces and learning through real projects. Currently looking for
+          junior / internship opportunities.
         </p>
       </motion.div>
 
-      {/* Main */}
+      {/* Main layout */}
       <motion.div
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
-        transition={{ duration: 0.7 }}
-        viewport={{ once: true, amount: 0.25 }}
-        className="mt-14 flex w-full flex-col lg:flex-row items-center gap-12 lg:gap-16"
+        transition={{ duration: 0.6, delay: 0.05 }}
+        viewport={{ once: true, amount: 0.2 }}
+        className="mt-10 grid grid-cols-1 lg:grid-cols-[0.95fr_1.05fr] gap-6"
       >
-        {/* Left: Image card */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.97 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true, amount: 0.35 }}
-          className="relative w-full max-w-[380px]"
-        >
-          <div className="absolute -inset-3 rounded-[28px] bg-gradient-to-b from-black/10 to-transparent blur-xl dark:from-white/10" />
-          <div className="relative overflow-hidden rounded-[28px] border border-gray-200 bg-white/60 p-2 shadow-sm dark:border-white/15 dark:bg-white/5">
-            <Image
-              src={assets.profile}
-              alt="Portrait"
-              className="w-full rounded-3xl object-cover"
-              priority
-            />
-          </div>
-        </motion.div>
-
-        {/* Right: Content */}
-        <div className="flex-1 w-full">
-          {/* Intro text */}
-          <motion.p
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.55, delay: 0.05 }}
-            viewport={{ once: true, amount: 0.35 }}
-            className="max-w-2xl font-ovo text-gray-700 dark:text-white/80"
-          >
-            Software Engineering graduate focused on frontend web development. I
-            like building modern UI with React/Next.js and improving through
-            real-world projects. I’m currently looking for junior/intern
-            opportunities where I can contribute and grow fast.
-          </motion.p>
-
-          {/* Highlight chips */}
+        {/* Left column */}
+        <div className="space-y-6">
+          {/* Profile + intro card */}
           <motion.div
-            initial={{ opacity: 0, y: 10 }}
+            initial={{ opacity: 0, y: 14 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.55, delay: 0.12 }}
-            viewport={{ once: true, amount: 0.35 }}
-            className="mt-6 flex flex-wrap gap-2"
+            transition={{ duration: 0.5 }}
+            viewport={{ once: true, amount: 0.25 }}
+            whileHover={{ y: -3 }}
+            className="rounded-2xl border border-gray-200 bg-white p-5 dark:border-white/10 dark:bg-white/5"
           >
-            {[
-              "Frontend (React / Next.js)",
-              "Tailwind UI",
-              "API Integration",
-              "Open to internship/junior",
-            ].map((chip) => (
-              <span
-                key={chip}
-                className="px-3 py-1 rounded-full text-xs border border-gray-300 text-gray-700 bg-white/60
-                dark:bg-white/5 dark:text-white/80 dark:border-white/20"
+            <div className="flex items-start gap-4">
+              <motion.div
+                className="shrink-0"
+                initial={{ opacity: 0, scale: 0.95 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.45, delay: 0.1 }}
+                viewport={{ once: true }}
               >
-                {chip}
-              </span>
-            ))}
+                <Image
+                  src={assets.profile_round}
+                  alt="Profile"
+                  width={84}
+                  height={84}
+                  className="rounded-full object-cover border border-gray-200 dark:border-white/10"
+                />
+              </motion.div>
+
+              <div>
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
+                  Nara Kithya
+                </h3>
+                <p className="mt-1 text-sm text-gray-600 dark:text-white/70">
+                  Junior Web Developer (Frontend-focused)
+                </p>
+                <p className="mt-3 text-sm leading-6 text-gray-600 dark:text-white/70">
+                  I build modern web interfaces with React and Tailwind CSS, and
+                  I also work with backend tools like Node.js, Express, and SQL
+                  databases for full-stack learning/projects.
+                </p>
+              </div>
+            </div>
           </motion.div>
 
-          {/* Info cards */}
-          <motion.ul
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ duration: 0.6, delay: 0.18 }}
-            viewport={{ once: true, amount: 0.25 }}
-            className="mt-8 grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-2xl"
-          >
-            {infoList.map(({ icon, iconDark, title, description }) => (
-              <motion.li
-                key={title}
-                whileHover={{ y: -4 }}
-                transition={{ duration: 0.2 }}
-                className="rounded-2xl border border-gray-200 bg-white/60 p-5 shadow-sm
-                dark:border-white/15 dark:bg-white/5"
+          {/* Stats */}
+          <div className="grid grid-cols-3 gap-3">
+            {stats.map((stat, i) => (
+              <motion.div
+                key={stat.label}
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, delay: i * 0.08 }}
+                viewport={{ once: true, amount: 0.25 }}
+                whileHover={{ y: -3 }}
+                className="rounded-2xl border border-gray-200 bg-white p-4 text-center dark:border-white/10 dark:bg-white/5"
               >
-                <div className="flex items-center gap-3">
-                  <Image
-                    src={isDarkMode ? iconDark : icon}
-                    alt={title}
-                    width={28}
-                    height={28}
-                    className="shrink-0"
-                  />
-                  <h3 className="font-semibold text-gray-900 dark:text-white">
-                    {title}
-                  </h3>
-                </div>
-                <p className="mt-3 text-sm text-gray-600 dark:text-white/80">
-                  {description}
+                <p className="text-xl sm:text-2xl font-semibold text-gray-900 dark:text-white">
+                  {stat.value}
                 </p>
-              </motion.li>
+                <p className="mt-1 text-xs sm:text-sm text-gray-500 dark:text-white/60">
+                  {stat.label}
+                </p>
+              </motion.div>
             ))}
-          </motion.ul>
+          </div>
 
-          {/* Tools */}
+          {/* Education */}
           <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ duration: 0.6, delay: 0.25 }}
+            initial={{ opacity: 0, y: 14 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.05 }}
             viewport={{ once: true, amount: 0.25 }}
-            className="mt-10"
+            whileHover={{ y: -2 }}
+            className="rounded-2xl border border-gray-200 bg-white p-5 dark:border-white/10 dark:bg-white/5"
           >
-            <h4 className="text-gray-700 font-ovo dark:text-white/80">
-              Tools I use
-            </h4>
+            <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
+              Education
+            </h3>
 
-            <div className="mt-4 flex flex-wrap items-center gap-3">
-              {toolsData.map((tool, i) => (
+            <div className="mt-4 space-y-4">
+              {education.map((item, index) => (
                 <motion.div
-                  key={i} // better than index
-                  animate={{ y: [0, -6, 0] }}
-                  transition={{
-                    duration: 2.8,
-                    repeat: Infinity,
-                    repeatType: "mirror",
-                    ease: [0.42, 0, 0.58, 1], // easeInOut as cubic-bezier
-                    delay: i * 0.12,
-                  }}
-                  whileHover={{ scale: 1.06 }}
-                  className="rounded-xl border border-gray-300 bg-white/60 p-3 shadow-sm
-                            dark:border-white/20 dark:bg-white/5"
-                  aria-label="Tool"
+                  key={`${item.degree}-${index}`}
+                  initial={{ opacity: 0, y: 10 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.4, delay: index * 0.08 }}
+                  viewport={{ once: true }}
+                  className={`${
+                    index !== education.length - 1
+                      ? "pb-4 border-b border-gray-100 dark:border-white/10"
+                      : ""
+                  }`}
                 >
-                  <Image src={tool} alt="tool" width={26} height={26} />
+                  <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1">
+                    <p className="font-medium text-gray-900 dark:text-white">
+                      {item.degree}
+                    </p>
+                    <span className="text-sm text-gray-500 dark:text-white/60">
+                      {item.period}
+                    </span>
+                  </div>
+                  <p className="text-sm text-gray-600 dark:text-white/70">
+                    {item.school}
+                  </p>
+                  <p className="mt-2 text-sm leading-6 text-gray-600 dark:text-white/65">
+                    {item.detail}
+                  </p>
                 </motion.div>
               ))}
             </div>
           </motion.div>
         </div>
+
+        {/* Right column - skills/stack */}
+        <motion.div
+          initial={{ opacity: 0, y: 14 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.55, delay: 0.08 }}
+          viewport={{ once: true, amount: 0.2 }}
+          whileHover={{ y: -2 }}
+          className="rounded-2xl border border-gray-200 bg-white p-5 sm:p-6 dark:border-white/10 dark:bg-white/5"
+        >
+          <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
+            Technical Skills & Stack
+          </h3>
+          <p className="mt-2 text-sm text-gray-600 dark:text-white/65">
+            Core technologies I use for web development projects.
+          </p>
+
+          <div className="mt-6 space-y-5">
+            {skillGroups.map((group, groupIndex) => (
+              <motion.div
+                key={group.title}
+                initial={{ opacity: 0, y: 8 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.35, delay: groupIndex * 0.05 }}
+                viewport={{ once: true }}
+              >
+                <h4 className="text-sm font-medium text-gray-800 dark:text-white/85">
+                  {group.title}
+                </h4>
+
+                <div className="mt-2 flex flex-wrap gap-2">
+                  {group.items.map((item, itemIndex) => (
+                    <motion.span
+                      key={item}
+                      initial={{ opacity: 0, scale: 0.96 }}
+                      whileInView={{ opacity: 1, scale: 1 }}
+                      transition={{
+                        duration: 0.25,
+                        delay: groupIndex * 0.04 + itemIndex * 0.02,
+                      }}
+                      viewport={{ once: true }}
+                      whileHover={{ y: -2 }}
+                      className="rounded-full border border-gray-200 bg-gray-50 px-3 py-1 text-sm text-gray-700
+                      dark:border-white/10 dark:bg-white/5 dark:text-white/80"
+                    >
+                      {item}
+                    </motion.span>
+                  ))}
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
       </motion.div>
     </section>
   );
