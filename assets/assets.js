@@ -128,6 +128,7 @@ export const workData = [
     tech: ["Laravel", "Tailwind", "Sqlite"],
     image: "/laravel.png",
     github: "https://github.com/Kithya/medium_clone",
+    live: "none",
   },
 ];
 
