@@ -121,6 +121,14 @@ export const workData = [
     github: "https://github.com/Kithya/chatgpt_clone",
     live: "https://chatgpt-clone-alpha-puce.vercel.app",
   },
+  {
+    id: "medium-clone",
+    title: "Medium Clone",
+    description: "Medium Clone with Laravel",
+    tech: ["Laravel", "Tailwind", "Sqlite"],
+    image: "/laravel.png",
+    github: "https://github.com/Kithya/medium_clone",
+  },
 ];
 
 export const serviceData = [
