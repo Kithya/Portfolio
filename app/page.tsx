@@ -8,29 +8,23 @@ import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 import { useEffect, useState } from "react";
 
+const getInitialDarkMode = () => {
+  if (typeof window === "undefined") return false;
+
+  const storedTheme = window.localStorage.getItem("theme");
+
+  if (storedTheme === "dark") return true;
+  if (storedTheme === "light") return false;
+
+  return window.matchMedia("(prefers-color-scheme: dark)").matches;
+};
+
 export default function Home() {
-  const [isDarkMode, setIsDarkMode] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(getInitialDarkMode);
 
   useEffect(() => {
-    if (
-      localStorage.theme === "dark" ||
-      (!("theme" in localStorage) &&
-        window.matchMedia("(prefers-color-scheme: dark)").matches)
-    ) {
-      setIsDarkMode(true);
-    } else {
-      setIsDarkMode(false);
-    }
-  }, []);
-
-  useEffect(() => {
-    if (isDarkMode) {
-      document.documentElement.classList.add("dark");
-      localStorage.theme = "dark";
-    } else {
-      document.documentElement.classList.remove("dark");
-      localStorage.theme = "";
-    }
+    document.documentElement.classList.toggle("dark", isDarkMode);
+    window.localStorage.setItem("theme", isDarkMode ? "dark" : "light");
   }, [isDarkMode]);
 
   return (
@@ -38,10 +32,10 @@ export default function Home() {
       <Navbar isDarkMode={isDarkMode} setIsDarkMode={setIsDarkMode} />
       <main>
         <Header />
-        <About isDarkMode={isDarkMode} />
+        <About />
         <Services />
-        <Work isDarkMode={isDarkMode} />
-        <Contact isDarkMode={isDarkMode} />
+        <Work />
+        <Contact />
         <Footer isDarkMode={isDarkMode} />
       </main>
     </>

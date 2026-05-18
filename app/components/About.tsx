@@ -3,22 +3,18 @@ import Image from "next/image";
 import React from "react";
 import { motion } from "motion/react";
 
-type AboutProps = {
-  isDarkMode: boolean;
-};
-
 const skillGroups = [
   {
     title: "Languages",
-    items: ["Java", "C++", "JavaScript"],
+    items: ["Java", "C++", "JavaScript", "TypeScript", "PHP", "SQL"],
   },
   {
     title: "Frontend",
-    items: ["React", "HTML", "CSS", "Tailwind CSS", "Next.js"],
+    items: ["React", "Next.js", "HTML", "CSS", "Tailwind CSS"],
   },
   {
     title: "Backend",
-    items: ["Node.js", "Express"],
+    items: ["Node.js", "Express", "Laravel"],
   },
   {
     title: "Database",
@@ -26,231 +22,154 @@ const skillGroups = [
   },
   {
     title: "Tools",
-    items: ["Git", "GitHub", "Postman", "VS Code"],
-  },
-  {
-    title: "Design",
-    items: ["Figma"],
+    items: ["Git", "GitHub", "Postman", "VS Code", "Figma"],
   },
 ];
 
 const stats = [
-  { label: "Projects", value: "5+" },
-  { label: "Years Learning", value: "1+" },
-  { label: "Focus", value: "Web Dev" },
+  { label: "Projects built", value: "5+" },
+  { label: "Learning web dev", value: "1+ yr" },
+  { label: "Current goal", value: "Junior role" },
 ];
 
-const education = [
-  {
-    degree: "Bachelor of Software Engineering",
-    school: "Limkokwing University of Creative Technology",
-    period: "2022 - 2025",
-    detail:
-      "Focused on software engineering fundamentals, web development, databases, and project-based learning.",
-  },
-];
-
-const About = ({ isDarkMode: _isDarkMode }: AboutProps) => {
+const About = () => {
   return (
-    <section
-      id="about"
-      className="w-full px-[8%] lg:px-[10%] py-14 scroll-mt-20"
-    >
-      {/* Header (same style as your previous design) */}
-      <motion.div
-        initial={{ opacity: 0, y: 12 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.55 }}
-        viewport={{ once: true, amount: 0.35 }}
-        className="text-center"
-      >
-        <h4 className="mb-2 text-lg font-ovo text-gray-700 dark:text-white/80">
-          Introduction
-        </h4>
-        <h2 className="text-5xl font-ovo text-gray-900 dark:text-white">
-          About Me
-        </h2>
-        <p className="mt-4 max-w-2xl mx-auto text-sm sm:text-base text-gray-600 dark:text-white/70 leading-7">
-          Frontend-focused developer who enjoys building clean, responsive web
-          interfaces and learning through real projects. Currently looking for
-          junior / internship opportunities.
-        </p>
-      </motion.div>
+    <section id="about" className="section-shell">
+      <div className="section-container">
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.55 }}
+          viewport={{ once: true, amount: 0.35 }}
+          className="section-heading"
+        >
+          <p className="section-eyebrow">About me</p>
+          <h2 className="section-title">
+            A practical developer with a UI-first eye.
+          </h2>
+          <p className="section-copy">
+            I like turning ideas into responsive web interfaces that feel clear,
+            useful, and easy to maintain.
+          </p>
+        </motion.div>
 
-      {/* Main layout */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        transition={{ duration: 0.6, delay: 0.05 }}
-        viewport={{ once: true, amount: 0.2 }}
-        className="mt-10 grid grid-cols-1 lg:grid-cols-[0.95fr_1.05fr] gap-6"
-      >
-        {/* Left column */}
-        <div className="space-y-6">
-          {/* Profile + intro card */}
+        <div className="grid gap-6 lg:grid-cols-[0.95fr_1.05fr]">
           <motion.div
-            initial={{ opacity: 0, y: 14 }}
+            initial={{ opacity: 0, y: 18 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
             viewport={{ once: true, amount: 0.25 }}
-            whileHover={{ y: -3 }}
-            className="rounded-2xl border border-gray-200 bg-white p-5 dark:border-white/10 dark:bg-white/5"
+            className="surface-card p-5 sm:p-6"
           >
-            <div className="flex items-start gap-4">
-              <motion.div
-                className="shrink-0"
-                initial={{ opacity: 0, scale: 0.95 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.45, delay: 0.1 }}
-                viewport={{ once: true }}
-              >
-                <Image
-                  src={assets.profile_round}
-                  alt="Profile"
-                  width={84}
-                  height={84}
-                  className="rounded-full object-cover border border-gray-200 dark:border-white/10"
-                />
-              </motion.div>
+            <div className="flex flex-col gap-5 sm:flex-row">
+              <Image
+                src={assets.profile_round}
+                alt="Nara Ratanakkithya"
+                width={96}
+                height={96}
+                className="h-24 w-24 rounded-lg object-cover"
+              />
 
               <div>
-                <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
-                  Nara Kithya
-                </h3>
-                <p className="mt-1 text-sm text-gray-600 dark:text-white/70">
-                  Junior Web Developer (Frontend-focused)
+                <p className="text-sm font-bold uppercase tracking-[0.14em] text-teal-700 dark:text-teal-300">
+                  Frontend-focused
                 </p>
-                <p className="mt-3 text-sm leading-6 text-gray-600 dark:text-white/70">
-                  I build modern web interfaces with React and Tailwind CSS, and
-                  I also work with backend tools like Node.js, Express, and SQL
-                  databases for full-stack learning/projects.
+                <h3 className="mt-2 text-2xl font-bold text-slate-950 dark:text-white">
+                  Nara Ratanakkithya
+                </h3>
+                <p className="mt-3 leading-7 text-slate-600 dark:text-slate-300">
+                  I build modern web projects with React, Next.js, and Tailwind
+                  CSS, while continuing to grow full-stack skills through Node,
+                  Express, and SQL-based project work.
                 </p>
               </div>
             </div>
-          </motion.div>
 
-          {/* Stats */}
-          <div className="grid grid-cols-3 gap-3">
-            {stats.map((stat, i) => (
-              <motion.div
-                key={stat.label}
-                initial={{ opacity: 0, y: 10 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.4, delay: i * 0.08 }}
-                viewport={{ once: true, amount: 0.25 }}
-                whileHover={{ y: -3 }}
-                className="rounded-2xl border border-gray-200 bg-white p-4 text-center dark:border-white/10 dark:bg-white/5"
-              >
-                <p className="text-xl sm:text-2xl font-semibold text-gray-900 dark:text-white">
-                  {stat.value}
-                </p>
-                <p className="mt-1 text-xs sm:text-sm text-gray-500 dark:text-white/60">
-                  {stat.label}
-                </p>
-              </motion.div>
-            ))}
-          </div>
-
-          {/* Education */}
-          <motion.div
-            initial={{ opacity: 0, y: 14 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.05 }}
-            viewport={{ once: true, amount: 0.25 }}
-            whileHover={{ y: -2 }}
-            className="rounded-2xl border border-gray-200 bg-white p-5 dark:border-white/10 dark:bg-white/5"
-          >
-            <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
-              Education
-            </h3>
-
-            <div className="mt-4 space-y-4">
-              {education.map((item, index) => (
-                <motion.div
-                  key={`${item.degree}-${index}`}
-                  initial={{ opacity: 0, y: 10 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.4, delay: index * 0.08 }}
-                  viewport={{ once: true }}
-                  className={`${
-                    index !== education.length - 1
-                      ? "pb-4 border-b border-gray-100 dark:border-white/10"
-                      : ""
-                  }`}
+            <div className="mt-6 grid gap-3 sm:grid-cols-3">
+              {stats.map((stat) => (
+                <div
+                  key={stat.label}
+                  className="border-t border-slate-200 pt-4 dark:border-white/10"
                 >
-                  <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1">
-                    <p className="font-medium text-gray-900 dark:text-white">
-                      {item.degree}
-                    </p>
-                    <span className="text-sm text-gray-500 dark:text-white/60">
-                      {item.period}
-                    </span>
-                  </div>
-                  <p className="text-sm text-gray-600 dark:text-white/70">
-                    {item.school}
+                  <p className="text-xl font-extrabold text-slate-950 dark:text-white">
+                    {stat.value}
                   </p>
-                  <p className="mt-2 text-sm leading-6 text-gray-600 dark:text-white/65">
-                    {item.detail}
+                  <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">
+                    {stat.label}
                   </p>
-                </motion.div>
+                </div>
               ))}
             </div>
           </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 18 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.08 }}
+            viewport={{ once: true, amount: 0.25 }}
+            className="surface-card p-5 sm:p-6"
+          >
+            <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+              <div>
+                <p className="text-sm font-bold uppercase tracking-[0.14em] text-teal-700 dark:text-teal-300">
+                  Education
+                </p>
+                <h3 className="mt-2 text-2xl font-bold text-slate-950 dark:text-white">
+                  Bachelor of Software Engineering
+                </h3>
+                <p className="mt-2 text-slate-600 dark:text-slate-300">
+                  Limkokwing University of Creative Technology
+                </p>
+              </div>
+              <span className="badge w-max">2022 - 2025</span>
+            </div>
+
+            <p className="mt-5 leading-7 text-slate-600 dark:text-slate-300">
+              My studies and projects focus on software engineering
+              fundamentals, responsive interfaces, databases, and product-style
+              development workflows.
+            </p>
+          </motion.div>
         </div>
 
-        {/* Right column - skills/stack */}
         <motion.div
-          initial={{ opacity: 0, y: 14 }}
+          initial={{ opacity: 0, y: 18 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.55, delay: 0.08 }}
+          transition={{ duration: 0.5, delay: 0.12 }}
           viewport={{ once: true, amount: 0.2 }}
-          whileHover={{ y: -2 }}
-          className="rounded-2xl border border-gray-200 bg-white p-5 sm:p-6 dark:border-white/10 dark:bg-white/5"
+          className="surface-card mt-6 p-5 sm:p-6"
         >
-          <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
-            Technical Skills & Stack
-          </h3>
-          <p className="mt-2 text-sm text-gray-600 dark:text-white/65">
-            Core technologies I use for web development projects.
-          </p>
+          <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
+            <div>
+              <p className="section-eyebrow">Skill stack</p>
+              <h3 className="mt-2 text-2xl font-bold text-slate-950 dark:text-white">
+                Tools I use to build and ship projects.
+              </h3>
+            </div>
+            <p className="max-w-md text-sm leading-6 text-slate-500 dark:text-slate-400">
+              A focused stack for frontend work, with backend and database
+              fundamentals for complete project builds.
+            </p>
+          </div>
 
-          <div className="mt-6 space-y-5">
-            {skillGroups.map((group, groupIndex) => (
-              <motion.div
-                key={group.title}
-                initial={{ opacity: 0, y: 8 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.35, delay: groupIndex * 0.05 }}
-                viewport={{ once: true }}
-              >
-                <h4 className="text-sm font-medium text-gray-800 dark:text-white/85">
+          <div className="mt-7 grid gap-6 md:grid-cols-2 lg:grid-cols-5">
+            {skillGroups.map((group) => (
+              <div key={group.title}>
+                <h4 className="font-bold text-slate-800 dark:text-slate-100">
                   {group.title}
                 </h4>
-
-                <div className="mt-2 flex flex-wrap gap-2">
-                  {group.items.map((item, itemIndex) => (
-                    <motion.span
-                      key={item}
-                      initial={{ opacity: 0, scale: 0.96 }}
-                      whileInView={{ opacity: 1, scale: 1 }}
-                      transition={{
-                        duration: 0.25,
-                        delay: groupIndex * 0.04 + itemIndex * 0.02,
-                      }}
-                      viewport={{ once: true }}
-                      whileHover={{ y: -2 }}
-                      className="rounded-full border border-gray-200 bg-gray-50 px-3 py-1 text-sm text-gray-700
-                      dark:border-white/10 dark:bg-white/5 dark:text-white/80"
-                    >
+                <div className="mt-3 flex flex-wrap gap-2">
+                  {group.items.map((item) => (
+                    <span key={item} className="badge">
                       {item}
-                    </motion.span>
+                    </span>
                   ))}
                 </div>
-              </motion.div>
+              </div>
             ))}
           </div>
         </motion.div>
-      </motion.div>
+      </div>
     </section>
   );
 };

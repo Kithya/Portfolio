@@ -1,177 +1,151 @@
+"use client";
+
 import { assets, workData } from "@/assets/assets";
 import Image from "next/image";
 import React from "react";
 import { motion } from "motion/react";
-type NavbarProps = {
-  isDarkMode: boolean;
-};
 
 const isValidLink = (value: string) =>
-  !!value && value.trim() !== "" && value.trim().toLocaleLowerCase() !== "none";
+  Boolean(value && value.trim() !== "" && value.trim().toLowerCase() !== "none");
 
-const Work = ({ isDarkMode }: NavbarProps) => {
-  const INITIAL_COUNT = 4;
-  const [expended, setExpanded] = React.useState(false);
+const Work = () => {
+  const initialCount = 4;
+  const [expanded, setExpanded] = React.useState(false);
 
-  const visibleProjects = expended
-    ? workData
-    : workData.slice(0, INITIAL_COUNT);
-
-  const canToggle = workData.length > INITIAL_COUNT;
+  const visibleProjects = expanded ? workData : workData.slice(0, initialCount);
+  const canToggle = workData.length > initialCount;
 
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      whileInView={{ opacity: 1 }}
-      transition={{ duration: 1 }}
-      id="projects"
-      className="w-full px-[12%] py-10 scroll-mt-20"
-    >
-      <motion.h4
-        initial={{ opacity: 0, y: -20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, delay: 0.3 }}
-        className="text-center mb-2 text-lg font-ovo"
-      >
-        My portfolio
-      </motion.h4>
-      <motion.h2
-        initial={{ opacity: 0, y: -20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, delay: 0.5 }}
-        className="text-center text-5xl font-ovo"
-      >
-        My Latest Projects
-      </motion.h2>
+    <section id="projects" className="section-shell">
+      <div className="section-container">
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.55 }}
+          viewport={{ once: true, amount: 0.35 }}
+          className="section-heading"
+        >
+          <p className="section-eyebrow">Selected work</p>
+          <h2 className="section-title">Projects that show how I build.</h2>
+          <p className="section-copy">
+            A mix of portfolio, SaaS-style, AI-assisted, and Laravel projects
+            with source links and live demos where available.
+          </p>
+        </motion.div>
 
-      <motion.p
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        transition={{ duration: 0.5, delay: 0.7 }}
-        className="text-center max-w-2xl mx-auto mt-5 mb-12 font-ovo text-sm text-gray-500 dark:text-white/80"
-      >
-        Here are a few projects I’ve worked on. Hover a card to view the code or
-        live demo.
-      </motion.p>
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 0.5, delay: 0.12 }}
+          viewport={{ once: true, amount: 0.15 }}
+          className="grid gap-6 md:grid-cols-2"
+        >
+          {visibleProjects.map((project) => {
+            const showGithub = isValidLink(project.github);
+            const showLive = isValidLink(project.live);
 
-      <motion.div
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        transition={{ duration: 0.5, delay: 0.7 }}
-        className="grid grid-template gap-6 my-10 dark:text-black"
-      >
-        {visibleProjects.map((project, index) => {
-          const showGithub = isValidLink(project.github);
-          const showLive = isValidLink(project.live);
+            return (
+              <motion.article
+                key={project.id}
+                whileHover={{ y: -4 }}
+                transition={{ duration: 0.2 }}
+                className="surface-card flex h-full flex-col overflow-hidden"
+              >
+                <div className="relative aspect-[16/10] w-full overflow-hidden bg-slate-100 dark:bg-white/5">
+                  <Image
+                    src={project.image}
+                    alt={`${project.title} screenshot`}
+                    fill
+                    sizes="(min-width: 768px) 50vw, 100vw"
+                    className="object-cover object-top transition duration-500 hover:scale-[1.03]"
+                  />
+                </div>
 
-          return (
-            <motion.article
-              key={project.id}
-              whileHover={{ scale: 1.03 }}
-              transition={{ duration: 0.2 }}
-              className="group relative overflow-hidden rounded-xl border border-gray-200 dark:border-white/20 bg-white/60 dark:bg-white/5"
-            >
-              {/* Image */}
-              <div className="relative aspect-[4/3] w-full">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={project.image}
-                  alt={project.title}
-                  className="h-full w-full object-cover"
-                />
-              </div>
+                <div className="flex flex-1 flex-col p-5 sm:p-6">
+                  <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+                    <div>
+                      <h3 className="text-xl font-bold text-slate-950 dark:text-white">
+                        {project.title}
+                      </h3>
+                      <p className="mt-2 text-sm leading-6 text-slate-600 dark:text-slate-300">
+                        {project.description}
+                      </p>
+                    </div>
+                  </div>
 
-              {/* Content */}
-              <div className="p-5">
-                <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
-                  {project.title}
-                </h3>
+                  {project.tech?.length ? (
+                    <ul className="mt-5 flex flex-wrap gap-2">
+                      {project.tech.map((tech) => (
+                        <li key={`${project.id}-${tech}`} className="badge">
+                          {tech}
+                        </li>
+                      ))}
+                    </ul>
+                  ) : null}
 
-                <p className="mt-2 text-sm text-gray-500 dark:text-white/80">
-                  {project.description}
-                </p>
-
-                {/* Tech stack */}
-                {project.tech?.length ? (
-                  <ul className="mt-4 flex flex-wrap gap-2">
-                    {project.tech.map((tech) => (
-                      <li
-                        key={`${project.id}-${tech}`}
-                        className="text-xs px-2.5 py-1 rounded-full border border-gray-300 text-gray-700 dark:text-white/80 dark:border-white/20"
+                  <div className="mt-auto flex flex-wrap gap-3 pt-6">
+                    {showLive ? (
+                      <a
+                        href={project.live}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="primary-button"
                       >
-                        {tech}
-                      </li>
-                    ))}
-                  </ul>
-                ) : null}
-              </div>
+                        Live demo
+                        <Image
+                          src={assets.right_arrow_white}
+                          alt=""
+                          className="w-4 dark:invert"
+                        />
+                      </a>
+                    ) : null}
 
-              {/* Hover overlay */}
+                    {showGithub ? (
+                      <a
+                        href={project.github}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="secondary-button"
+                      >
+                        GitHub
+                        <Image
+                          src={assets.send_icon}
+                          alt=""
+                          className="w-4 dark:invert"
+                        />
+                      </a>
+                    ) : null}
 
-              <div className="pointer-events-none absolute inset-0 bg-black/60 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-              <div className="absolute inset-0 flex items-center justify-center opacity-0 translate-y-2 transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0">
-                {showGithub && (
-                  <a
-                    href={project.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="pointer-events-auto inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 text-sm font-medium text-gray-900 hover:scale-[1.03] transition"
-                  >
-                    <span>Github</span>
-                    <Image src={assets.send_icon} alt="" className="w-4" />
-                  </a>
-                )}
+                    {!showGithub && !showLive ? (
+                      <span className="badge">Links coming soon</span>
+                    ) : null}
+                  </div>
+                </div>
+              </motion.article>
+            );
+          })}
+        </motion.div>
 
-                {showLive && (
-                  <a
-                    href={project.live}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="pointer-events-auto inline-flex items-center justify-center gap-2 rounded-full bg-white/10 px-4 py-2 text-sm font-medium text-white border border-white/40 hover:bg-white/20 hover:scale-[1.03] transition"
-                  >
-                    <span>Live</span>
-                    <Image
-                      src={
-                        isDarkMode
-                          ? assets.right_arrow_white
-                          : assets.right_arrow_white
-                      }
-                      alt=""
-                      className="w-4"
-                    />
-                  </a>
-                )}
-
-                {!showGithub && !showLive && (
-                  <span className="pointer-events-auto text-white/90 tet-sm px-4 py-2 rounded-full border border-white/30">
-                    Link Coming Soon
-                  </span>
-                )}
-              </div>
-            </motion.article>
-          );
-        })}
-      </motion.div>
-
-      {canToggle && (
-        <div className="flex justify-center mt-6">
-          <button
-            type="button"
-            onClick={() => setExpanded((p) => !p)}
-            className="flex items-center w-max justify-center gap-2 text-gray-700 border-[0.5px] rounded-full py-3 px-10 hover:bg-gray-900 hover:text-white duration-400 dark:text-white dark:border-white dark:bg-white/70 dark:hover:text-white"
-          >
-            {expended ? "Show Less" : "Show More"}
-            <Image
-              src={
-                isDarkMode ? assets.right_arrow_white : assets.right_arrow_bold
-              }
-              alt=""
-              className={`w-4 transition-transform duration-300 ${expended ? "rotate-90" : ""}`}
-            />
-          </button>
-        </div>
-      )}
-    </motion.div>
+        {canToggle ? (
+          <div className="mt-10 flex justify-center">
+            <button
+              type="button"
+              onClick={() => setExpanded((prev) => !prev)}
+              className="secondary-button"
+            >
+              {expanded ? "Show less" : "Show more projects"}
+              <Image
+                src={assets.right_arrow_bold}
+                alt=""
+                className={`w-4 transition-transform duration-300 dark:invert ${
+                  expanded ? "-rotate-90" : "rotate-90"
+                }`}
+              />
+            </button>
+          </div>
+        ) : null}
+      </div>
+    </section>
   );
 };
 

@@ -5,64 +5,56 @@ import { motion } from "motion/react";
 
 const Services = () => {
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      whileInView={{ opacity: 1 }}
-      transition={{ duration: 1 }}
+    <section
       id="services"
-      className="w-full px-[12%] py-10 scroll-mt-20"
+      className="section-shell border-y border-slate-200/70 bg-white/45 dark:border-white/10 dark:bg-white/[0.02]"
     >
-      <motion.h4
-        initial={{ opacity: 0, y: -20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, delay: 0.3 }}
-        className="text-center mb-2 text-lg font-ovo"
-      >
-        What I Offer
-      </motion.h4>
-      <motion.h2
-        initial={{ opacity: 0, y: -20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, delay: 0.5 }}
-        className="text-center text-5xl font-ovo"
-      >
-        My Services
-      </motion.h2>
+      <div className="section-container">
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.55 }}
+          viewport={{ once: true, amount: 0.35 }}
+          className="section-heading"
+        >
+          <p className="section-eyebrow">What I offer</p>
+          <h2 className="section-title">Focused support for modern web projects.</h2>
+          <p className="section-copy">
+            Clean interfaces, practical frontend builds, and thoughtful UI
+            planning for project work and junior development roles.
+          </p>
+        </motion.div>
 
-      <motion.p
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        transition={{ duration: 0.8, delay: 0.7 }}
-        className="text-center max-w-2xl mx-auto mt-5 mb-12 font-ovo text-sm text-gray-500 dark:text-white/80"
-      >
-        I’m a junior web developer focused on building clean, user-friendly web
-        interfaces and learning modern development workflows through real-world
-        projects.
-      </motion.p>
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 0.5, delay: 0.12 }}
+          viewport={{ once: true, amount: 0.2 }}
+          className="grid gap-5 md:grid-cols-3"
+        >
+          {serviceData.map(({ icon, title, description }) => (
+            <motion.article
+              key={title}
+              whileHover={{ y: -4 }}
+              transition={{ duration: 0.2 }}
+              className="surface-card p-6"
+            >
+              <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-teal-50 dark:bg-teal-400/10">
+                <Image src={icon} alt="" className="w-6" />
+              </div>
 
-      <motion.div
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        transition={{ duration: 0.6, delay: 0.7 }}
-        className="grid grid-template gap-6 my-10 "
-      >
-        {serviceData.map(({ icon, title, description, link }, index) => (
-          <motion.div
-            whileHover={{ scale: 1.05 }}
-            key={index}
-            className="border border-gray-400 rounded-lg p-6 hover-dual-offset cursor-pointer hover:-translate-y-1 duration-500 dark:hover:bg-[#11001F]/50 dark:border-white dark:hover:hover-dual-offset-white"
-          >
-            <Image src={icon} alt="" className="w-10" />
-            <h3 className="text-lg my-4 text-gray-700 dark:text-white">
-              {title}
-            </h3>
-            <p className="text-sm text-gray-600 leading-5 dark:text-white/80">
-              {description}
-            </p>
-          </motion.div>
-        ))}
-      </motion.div>
-    </motion.div>
+              <h3 className="mt-6 text-xl font-bold text-slate-950 dark:text-white">
+                {title}
+              </h3>
+
+              <p className="mt-3 text-sm leading-7 text-slate-600 dark:text-slate-300">
+                {description}
+              </p>
+            </motion.article>
+          ))}
+        </motion.div>
+      </div>
+    </section>
   );
 };
 

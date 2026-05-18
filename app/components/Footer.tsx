@@ -2,58 +2,65 @@ import { assets } from "@/assets/assets";
 import Image from "next/image";
 import React from "react";
 
-type NavbarProps = {
+type FooterProps = {
   isDarkMode: boolean;
 };
 
-const Footer = ({ isDarkMode }: NavbarProps) => {
+const socialLinks = [
+  { label: "GitHub", href: "https://github.com/Kithya" },
+  { label: "Facebook", href: "https://www.facebook.com/kithya.mrr/" },
+  { label: "Telegram", href: "https://t.me/Kithyanara" },
+  { label: "Email", href: "mailto:narakithya.work@gmail.com" },
+];
+
+const Footer = ({ isDarkMode }: FooterProps) => {
   return (
-    <div className="mt-20">
-      <div className="text-center">
-        <Image
-          src={isDarkMode ? assets.logo2_dark : assets.logo2}
-          alt=""
-          className="w-36 mx-auto mb-2"
-        />
-        <div className="flex items-center gap-2 mx-auto w-max">
-          <Image
-            src={isDarkMode ? assets.mail_icon_dark : assets.mail_icon}
-            alt=""
-            className="w-6"
-          />
-          narakithya.work@gmail.com
+    <footer className="px-5 py-10 sm:px-6 lg:px-8">
+      <div className="section-container">
+        <div className="flex flex-col gap-8 border-b border-slate-200 pb-8 dark:border-white/10 md:flex-row md:items-center md:justify-between">
+          <div>
+            <Image
+              src={isDarkMode ? assets.logo2_dark : assets.logo2}
+              alt="Kithya logo"
+              className="h-auto w-32"
+            />
+            <a
+              href="mailto:narakithya.work@gmail.com"
+              className="mt-4 flex w-max items-center gap-2 text-slate-600 transition hover:text-slate-950 dark:text-slate-300 dark:hover:text-white"
+            >
+              <Image
+                src={isDarkMode ? assets.mail_icon_dark : assets.mail_icon}
+                alt=""
+                className="w-5"
+              />
+              narakithya.work@gmail.com
+            </a>
+          </div>
+
+          <ul className="flex flex-wrap gap-5 text-sm font-semibold text-slate-600 dark:text-slate-300">
+            {socialLinks.map((link) => (
+              <li key={link.href}>
+                <a
+                  href={link.href}
+                  target={link.href.startsWith("mailto:") ? undefined : "_blank"}
+                  rel={
+                    link.href.startsWith("mailto:") ? undefined : "noopener noreferrer"
+                  }
+                  className="transition hover:text-slate-950 dark:hover:text-white"
+                >
+                  {link.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div className="flex flex-col gap-3 pt-6 text-sm text-slate-500 dark:text-slate-400 sm:flex-row sm:items-center sm:justify-between">
+          <p>© {new Date().getFullYear()} Nara Ratanakkithya. All rights reserved.</p>
+          <p>Tel: +855 77961048</p>
         </div>
       </div>
-
-      <div className="text-center sm:flex items-center justify-between border-t border-gray-400 mx-[10%] mt-12 py-6">
-        <p className="">
-          © {new Date().getFullYear()} Nara Ratanakkithya. All rights reserved.
-        </p>
-        <p className="text-gray-500">Tel: +855 77961048</p>
-        <ul className="flex items-center gap-10 mt-4 sm:mt-0">
-          <li>
-            <a target="_blank" href="https://github.com/Kithya">
-              Github
-            </a>
-          </li>
-          <li>
-            <a target="_blank" href="https://www.facebook.com/kithya.mrr/">
-              Facebook
-            </a>
-          </li>
-          <li>
-            <a target="_blank" href="https://t.me/Kithyanara">
-              Telegram
-            </a>
-          </li>
-          <li>
-            <a target="_blank" href="mailto:narakithya@gmail.com">
-              Email
-            </a>
-          </li>
-        </ul>
-      </div>
-    </div>
+    </footer>
   );
 };
 
