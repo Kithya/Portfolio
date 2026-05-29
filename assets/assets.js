@@ -110,7 +110,7 @@ export const workData = [
     tech: ["NextJs", "Tailwind", "PostgresQL"],
     image: "/dealflow.png",
     github: "https://github.com/Kithya/email-project",
-    live: "none",
+    live: "https://dealflow-six.vercel.app/",
   },
   {
     id: "chatgpt-clone",
@@ -139,6 +139,15 @@ export const workData = [
     github: "https://github.com/Kithya/student-management",
     live: "https://student-management-main-ldsnei.laravel.cloud",
   },
+  // {
+  //   id: "e-commerce-website",
+  //   title: "E-Commerce Website",
+  //   description: "E-Commerce Website with NextJs",
+  //   tech: ["NextJs", "Tailwind", "PostgresQL", "Prisma"],
+  //   image: "/nextjss.png",
+  //   github: "https://github.com/Kithya/e-commerce-website",
+  //   live: "https://student-management-main-ldsnei.laravel.cloud",
+  // },
 ];
 
 export const serviceData = [
